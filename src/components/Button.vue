@@ -8,6 +8,7 @@
         :large="large"
         :markup="markup"
         @click="handleClick"
+        @hover="handleHover"
     >
         <slot></slot>
     </button>
@@ -45,6 +46,9 @@
     methods: {
       handleClick(e) {
         this.$emit('click', e)
+      },
+      handleHover(e) {
+        this.$emit('hover', e)
       }
     }
   }

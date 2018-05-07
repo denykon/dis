@@ -1,16 +1,16 @@
 <template>
     <div class="catalog">
         <h1>This is an Catalog page</h1>
-        <Product title="Products"/>
+        <v-product header="Product"/>
     </div>
 </template>
 
 <script>
-  import Product from '@/components/Product.vue';
+  import VProduct from '../components/Product';
 
   export default {
     components: {
-      Product
+      VProduct
     }
   }
 </script>

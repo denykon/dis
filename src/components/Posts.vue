@@ -1,7 +1,7 @@
 <template>
     <div class="posts">
         <h1>{{ msg }}</h1>
-        <Button markup="primary" v-on:click="getPosts">Get more posts</Button>
+        <v-button markup="primary" v-on:click="getPosts">Get more posts</v-button>
         <div v-for="post in posts" :key="post.id">
             <h3>{{post.title}}</h3>
             <p>{{post.body}}</p>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-  import Button from '@/components/Button.vue';
+  import VButton from './Button';
 
   export default {
     name: 'posts',
@@ -26,7 +26,7 @@
 
     },
     components: {
-      Button
+      VButton
     },
     methods: {
       getPosts() {

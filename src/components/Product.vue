@@ -1,7 +1,7 @@
 <template>
     <div class="product">
-        <h1>{{ title }}</h1>
-        <Button markup="success" v-on:click="getProducts">Get more products</Button>
+        <h1>{{ header }}</h1>
+        <v-button markup="success" v-on:click="getProducts">Get more products</v-button>
         <div v-for="product in products" :key="product.id">
             <h4 class="title">{{product.title}}</h4>
             <img class="image" :src="product.url">
@@ -10,12 +10,15 @@
 </template>
 
 <script>
-  import Button from '@/components/Button.vue';
+  import VButton from './Button';
 
   export default {
-    name: 'prods',
+    name: 'v-product',
     props: {
-      title: String
+      header: {
+        type: String,
+        required: true
+      }
     },
     data() {
       return {
@@ -23,7 +26,7 @@
       }
     },
     components: {
-      Button
+      VButton
     },
     methods: {
       getProducts() {

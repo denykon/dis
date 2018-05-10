@@ -1,10 +1,12 @@
 <template>
-    <div class="product">
+    <div class="product-catalog">
         <h1>{{ header }}</h1>
         <v-button markup="success" v-on:click="getProducts">Get more products</v-button>
-        <div v-for="product in products" :key="product.id">
-            <h4 class="title">{{product.title}}</h4>
-            <img class="image" :src="product.url">
+        <div class="product-list">
+            <div v-for="product in products" :key="product.id" class="product-item">
+                <h4 class="title">{{product.title}}</h4>
+                <img class="image" :src="product.url">
+            </div>
         </div>
     </div>
 </template>
@@ -43,5 +45,11 @@
 <style scoped>
     .image {
         max-width: 80%;
+    }
+    .product-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(320px, 1fr));
+        grid-auto-rows: minmax(300px, auto);
+        grid-row-gap: 0.5em;
     }
 </style>

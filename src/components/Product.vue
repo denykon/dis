@@ -1,9 +1,10 @@
 <template>
     <div class="product-catalog">
         <h1>{{ header }}</h1>
-        <v-button markup="success" v-on:click="getProducts">Get more products</v-button>
+        <input type="text" v-model="search" placeholder="Search by product title.."/>
+        <v-button markup="success" v-on:click="getProducts(id)">Get more products</v-button>
         <div class="product-list">
-            <div v-for="product in products" :key="product.id" class="product-item">
+            <div v-for="product in filteredList" :key="product.id" class="product-item">
                 <h4 class="title">{{product.title}}</h4>
                 <img class="image" :src="product.url">
             </div>
@@ -24,19 +25,32 @@
     },
     data() {
       return {
-        products: ''
+        products: [],
+        search: '',
+        id: 1
       }
+    },
+    mounted() {
+      this.getProducts(this.id);
     },
     components: {
       VButton
     },
+    computed: {
+      filteredList() {
+        return this.products.filter(product => {
+          return product.title.toLowerCase().includes(this.search.toLowerCase())
+        })
+      }
+    },
     methods: {
-      getProducts() {
-        fetch('https://jsonplaceholder.typicode.com/albums/1/photos')
+      getProducts(id) {
+        fetch(`https://jsonplaceholder.typicode.com/albums/${id}/photos`)
           .then(response => response.json())
           .then(json => {
             this.products = json;
           });
+        this.id++;
       }
     }
   }

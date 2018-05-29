@@ -1,9 +1,10 @@
 <template>
     <div class="posts">
         <h1>{{ msg }}</h1>
-        <v-button markup="primary" v-on:click="getPosts">Get more posts</v-button>
+        <input type="text" v-model="search" placeholder="Search by post title.."/>
+        <v-button markup="primary" v-on:click="getPosts(id)">Get more posts</v-button>
         <div class="post-list">
-            <div v-for="post in posts" :key="post.id">
+            <div v-for="post in filteredList" :key="post.id">
                 <h3>{{post.title}}</h3>
                 <p>{{post.body}}</p>
             </div>
@@ -21,22 +22,32 @@
     },
     data() {
       return {
-        posts: ''
+        posts: [],
+        search: '',
+        id: 1
+      }
+    },
+    computed: {
+      filteredList() {
+        return this.posts.filter(post => {
+          return post.title.toLowerCase().includes(this.search.toLowerCase())
+        })
       }
     },
     mounted() {
-
+      this.getPosts(this.id);
     },
     components: {
       VButton
     },
     methods: {
-      getPosts() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+      getPosts(id) {
+        fetch(`https://jsonplaceholder.typicode.com/posts/?userId=${id}`)
           .then(response => response.json())
           .then(json => {
             this.posts = json;
           });
+        this.id++;
       }
     }
   }
@@ -57,7 +68,6 @@
     .post-list {
         display: grid;
         grid-template-columns: repeat(auto-fill,minmax(320px, 1fr));
-        grid-auto-rows: minmax(300px, auto);
         grid-row-gap: 0.5em;
         grid-column-gap: 1em;
     }

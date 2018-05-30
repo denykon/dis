@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
+    "runserver": "node server/server.js",
     "build": "vue-cli-service build",
     "test": "vue-cli-service test",
     "e2e": "vue-cli-service e2e"
@@ -20,6 +21,7 @@
     "@vue/cli-service": "^3.0.0-beta.12",
     "@vue/test-utils": "^1.0.0-beta.16",
     "chai": "^4.1.2",
+    "json-server": "^0.13.0",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
     "vue-template-compiler": "^2.5.16"

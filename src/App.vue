@@ -1,16 +1,16 @@
 <template>
     <div id="app">
-        <Navigation/>
+        <MainHeader/>
         <router-view/>
     </div>
 </template>
 
 <script>
-  import Navigation from '@/components/Navigation.vue';
+  import MainHeader from './components/Header';
 
   export default {
     components: {
-      Navigation
+      MainHeader
     }
   }
 </script>

@@ -1,10 +1,15 @@
 <template>
-    
+    <Navigation/>
 </template>
 
 <script>
+  import Navigation from './Navigation.vue';
+
   export default {
-    name: "header"
+    name: 'main-header',
+    components: {
+      Navigation
+    }
   }
 </script>
 

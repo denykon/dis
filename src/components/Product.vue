@@ -2,7 +2,7 @@
     <div class="product-catalog">
         <h1>{{ header }}</h1>
         <input type="text" v-model="search" placeholder="Search by product title.."/>
-        <v-button markup="success" v-on:click="getProducts(id)">Get more products</v-button>
+        <v-button markup="success" v-on:click="getProducts(albumId)">Get more products</v-button>
         <div class="product-list">
             <div v-for="product in filteredList" :key="product.id" class="product-item">
                 <h4 class="title">{{product.title}}</h4>
@@ -27,11 +27,11 @@
       return {
         products: [],
         search: '',
-        id: 1
+        albumId: 1
       }
     },
     mounted() {
-      this.getProducts(this.id);
+      this.getProducts(this.albumId);
     },
     components: {
       VButton
@@ -44,13 +44,13 @@
       }
     },
     methods: {
-      getProducts(id) {
-        fetch(`https://jsonplaceholder.typicode.com/albums/${id}/photos`)
+      getProducts(albumId) {
+        fetch(`http://localhost:3000/photos/?albumId=${albumId}`)
           .then(response => response.json())
           .then(json => {
             this.products = json;
           });
-        this.id++;
+        this.albumId++;
       }
     }
   }

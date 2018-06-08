@@ -36,7 +36,6 @@
     },
     mounted() {
       this.getPosts(this.id);
-      this.createNewPost();
     },
     components: {
       VButton
@@ -49,16 +48,6 @@
             this.posts = json;
           });
         this.id++;
-      },
-      createNewPost() {
-        const headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        return fetch('http://localhost:3000/posts/', {
-          headers: headers,
-          method: 'POST',
-          body: JSON.stringify({userId: 11, title: 'Textual content', body: 'body text example'})
-        }).then(response => response.json());
       }
     }
   }

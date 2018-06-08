@@ -28,7 +28,7 @@
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
         headers.append('Accept', 'application/json');
-        return fetch('http://localhost:3000/posts/', {
+        return fetch('https://vue-x.herokuapp.com/posts/', {
           headers: headers,
           method: 'POST',
           body: JSON.stringify({userId: this.userId, title: this.title, body: this.text})

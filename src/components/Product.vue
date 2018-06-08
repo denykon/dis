@@ -45,7 +45,7 @@
     },
     methods: {
       getProducts(albumId) {
-        fetch(`http://localhost:3000/photos/?albumId=${albumId}`)
+        fetch(`https://vue-x.herokuapp.com/photos/?albumId=${albumId}`)
           .then(response => response.json())
           .then(json => {
             this.products = json;

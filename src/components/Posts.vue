@@ -42,7 +42,7 @@
     },
     methods: {
       getPosts(id) {
-        fetch(`http://localhost:3000/posts/?userId=${id}`)
+        fetch(`https://vue-x.herokuapp.com/posts/?userId=${id}`)
           .then(response => response.json())
           .then(json => {
             this.posts = json;

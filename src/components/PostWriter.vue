@@ -36,7 +36,6 @@
           .then(() => {
             this.title = '';
             this.text = '';
-            this.userId = 1;
           });
       }
     }

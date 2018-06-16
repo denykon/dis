@@ -2,7 +2,8 @@
     <div id="nav">
         <router-link to="/dis/">Home</router-link> |
         <router-link to="/dis/catalog">Catalog</router-link> |
-        <router-link to="/dis/about">About</router-link>
+        <router-link to="/dis/about">About</router-link> |
+        <router-link to="/dis/adminpage">Admin</router-link>
     </div>
 </template>
 
@@ -17,12 +18,12 @@
         padding: 30px;
     }
 
-    #nav a {
+    a {
         font-weight: bold;
         color: #2c3e50;
     }
 
-    #nav a.router-link-exact-active {
+    .router-link-exact-active {
         color: #42b983;
     }
 </style>

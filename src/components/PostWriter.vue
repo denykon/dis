@@ -1,19 +1,28 @@
 <template>
     <div class="post-writer">
         <h3>Add new post</h3>
-        <input type="text" v-model="userId" placeholder="User ID"/>
-        <input type="text" v-model="title" placeholder="Title"/>
-        <input type="text" v-model="text" placeholder="Text"/>
-        <v-button markup="primary" v-on:click="addPost">Add post</v-button>
+        <div class="input-group">
+            <VInput class="id" type="text" v-model="userId" placeholder="User ID"/>
+            <VInput class="title" type="text" v-model="title" placeholder="Title"/>
+            <textarea class="text" v-model="text" placeholder="Text"></textarea>
+        </div>
+        <VButton markup="primary"
+                 @click="addPost">Add post
+        </VButton>
+        <VButton markup="error"
+                 @click="deletePost">Delete post
+        </VButton>
     </div>
 </template>
 
 <script>
   import VButton from './Button';
+  import VInput from './Input';
 
   export default {
     name: 'PostWriter',
     components: {
+      VInput,
       VButton
     },
     data() {
@@ -34,14 +43,34 @@
           body: JSON.stringify({userId: this.userId, title: this.title, body: this.text})
         }).then(response => response.json())
           .then(() => {
-            this.title = '';
-            this.text = '';
+            this.textClear();
           });
+      },
+      deletePost() {
+        return fetch(`https://vue-x.herokuapp.com/posts/${this.userId}`, {
+          method: 'DELETE'
+        });
+      },
+      textClear() {
+        this.title = '';
+        this.text = '';
+        this.$emit('post-added', this.userId);
       }
     }
   }
 </script>
 
-<style scoped>
+<style lang="less" scoped>
+    .input-group {
+        width: 50vw;
+        margin: 0 auto;
+    }
 
+    .text {
+        height: 30vh;
+    }
+
+    textarea {
+        resize: none;
+    }
 </style>

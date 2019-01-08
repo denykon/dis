@@ -6,7 +6,7 @@
   import Navigation from './Navigation.vue';
 
   export default {
-    name: 'main-header',
+    name: 'MainHeader',
     components: {
       Navigation
     }

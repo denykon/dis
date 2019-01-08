@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-        <img src="../assets/logo.png">
-        <Posts title="Posts"/>
+        <img alt="logo" src="../assets/logo_main.png">
+        <Posts msg="Posts"/>
     </div>
 </template>
 
@@ -15,3 +15,9 @@
     }
   }
 </script>
+
+<style scoped>
+    img {
+        width: 10vw;
+    }
+</style>

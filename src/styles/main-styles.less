@@ -1,0 +1,21 @@
+@import "variables";
+
+* {
+  box-sizing: border-box;
+
+  &:before, &:after {
+    box-sizing: border-box
+  }
+}
+
+textarea {
+  font-family: @base-font;
+}
+
+#app {
+  font-family: @base-font;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}

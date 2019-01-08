@@ -12,22 +12,22 @@ export default new Router({
   routes: [
     {
       path: '/dis/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
       path: '/dis/catalog',
-      name: 'catalog',
+      name: 'Catalog',
       component: Catalog
     },
     {
       path: '/dis/about',
-      name: 'about',
+      name: 'About',
       component: About
     },
     {
       path: '/dis/adminpage',
-      name: 'admin',
+      name: 'AdminPage',
       component: Admin
     }
   ]

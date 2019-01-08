@@ -1,12 +1,14 @@
 <template>
-    <div class="posts">
+    <div class="posts" @post-added="">
         <h1>{{ msg }}</h1>
-        <input type="text" v-model="search" placeholder="Search by post title.."/>
-        <v-button markup="primary" v-on:click="getPosts(id)">Get more posts</v-button>
+        <VInput type="text" v-model="search" placeholder="Search by post title.."/>
+        <VButton markup="primary" @click="getPosts(id)">Get more posts</VButton>
         <div class="post-list">
             <div v-for="post in filteredList" :key="post.id">
-                <h3>{{post.title}}</h3>
-                <p>{{post.body}}</p>
+                <div class="post">
+                    <h3>{{post.title}}</h3>
+                    <p>{{post.body}}</p>
+                </div>
             </div>
         </div>
     </div>
@@ -14,6 +16,7 @@
 
 <script>
   import VButton from './Button';
+  import VInput from './Input';
 
   export default {
     name: 'posts',
@@ -30,7 +33,7 @@
     computed: {
       filteredList() {
         return this.posts.filter(post => {
-          return post.title.toLowerCase().includes(this.search.toLowerCase())
+          return post.title.toLowerCase().includes(this.search.toLowerCase());
         })
       }
     },
@@ -38,6 +41,7 @@
       this.getPosts(this.id);
     },
     components: {
+      VInput,
       VButton
     },
     methods: {
@@ -64,6 +68,13 @@
 
     a {
         color: #42b983;
+    }
+    input, button {
+        align-self: center;
+    }
+    .posts {
+        display: flex;
+        flex-direction: column;
     }
     .post-list {
         display: grid;

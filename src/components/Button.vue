@@ -83,6 +83,7 @@
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-size: 1rem;
         padding: 6px 24px;
+        margin: 1rem;
         text-decoration: none;
         outline: 0;
         &:disabled {

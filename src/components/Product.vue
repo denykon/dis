@@ -1,12 +1,13 @@
 <template>
     <div class="product-catalog">
         <h1>{{ header }}</h1>
-        <input type="text" v-model="search" placeholder="Search by product title.."/>
-        <v-button markup="success" v-on:click="getProducts(albumId)">Get more products</v-button>
+        <VInput type="text" v-model="search" placeholder="Search by product title.."/>
+        <VButton markup="success"
+                 @click="getProducts(albumId)">Get more products</VButton>
         <div class="product-list">
             <div v-for="product in filteredList" :key="product.id" class="product-item">
                 <h4 class="title">{{product.title}}</h4>
-                <img class="image" :src="product.url">
+                <img class="image" :src="product.url" alt="Product">
             </div>
         </div>
     </div>
@@ -14,6 +15,7 @@
 
 <script>
   import VButton from './Button';
+  import VInput from './Input';
 
   export default {
     name: 'v-product',
@@ -34,6 +36,7 @@
       this.getProducts(this.albumId);
     },
     components: {
+      VInput,
       VButton
     },
     computed: {

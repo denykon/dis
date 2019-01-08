@@ -1,7 +1,7 @@
 <template>
     <div class="catalog">
         <h1>This is an Catalog page</h1>
-        <v-product header="Product"/>
+        <VProduct header="Product"/>
     </div>
 </template>
 

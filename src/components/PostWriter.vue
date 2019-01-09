@@ -27,12 +27,15 @@
     },
     data() {
       return {
-        userId: 1,
+        userId: this.$store.state.userId,
         title: '',
         text: ''
       }
     },
     methods: {
+      updatePosts() {
+        return this.$store.commit('updatePosts');
+      },
       addPost() {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -41,20 +44,21 @@
           headers: headers,
           method: 'POST',
           body: JSON.stringify({userId: this.userId, title: this.title, body: this.text})
-        }).then(response => response.json())
-          .then(() => {
-            this.textClear();
-          });
+        }).then(() => {
+          this.textClear();
+          this.$store.commit('updatePosts');
+        });
       },
       deletePost() {
-        return fetch(`https://vue-x.herokuapp.com/posts/${this.userId}`, {
+        return fetch(`https://vue-x.herokuapp.com/posts/${this.$store.state.posts.length ? this.$store.state.posts[0].id :''}`, {
           method: 'DELETE'
+        }).then(() => {
+          this.$store.commit('updatePosts');
         });
       },
       textClear() {
         this.title = '';
         this.text = '';
-        this.$emit('post-added', this.userId);
       }
     }
   }

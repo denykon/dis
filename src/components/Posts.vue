@@ -1,8 +1,8 @@
 <template>
-    <div class="posts" @post-added="">
+    <div class="posts">
         <h1>{{ msg }}</h1>
         <VInput type="text" v-model="search" placeholder="Search by post title.."/>
-        <VButton markup="primary" @click="getPosts(id)">Get more posts</VButton>
+        <VButton markup="primary">Get more posts</VButton>
         <div class="post-list">
             <div v-for="post in filteredList" :key="post.id">
                 <div class="post">
@@ -20,39 +20,29 @@
 
   export default {
     name: 'posts',
+    components: {
+      VInput,
+      VButton
+    },
     props: {
       msg: String
     },
     data() {
       return {
-        posts: [],
-        search: '',
-        id: 1
+        search: ''
       }
     },
     computed: {
       filteredList() {
-        return this.posts.filter(post => {
+        return this.$store.state.posts.filter(post => {
           return post.title.toLowerCase().includes(this.search.toLowerCase());
         })
       }
     },
     mounted() {
-      this.getPosts(this.id);
-    },
-    components: {
-      VInput,
-      VButton
+      this.$store.commit('updatePosts');
     },
     methods: {
-      getPosts(id) {
-        fetch(`https://vue-x.herokuapp.com/posts/?userId=${id}`)
-          .then(response => response.json())
-          .then(json => {
-            this.posts = json;
-          });
-        this.id++;
-      }
     }
   }
 </script>

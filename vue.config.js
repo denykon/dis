@@ -1,5 +1,5 @@
 module.exports = {
-  baseUrl: '/dis/',
+  publicPath: '/dis/',
   outputDir: 'docs',
   devServer: {
     https: true

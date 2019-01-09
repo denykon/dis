@@ -1,7 +1,7 @@
 <template>
     <div class="admin-page">
         <h1>This is an admin page</h1>
-        <PostWriter @post-added="log"/>
+        <PostWriter/>
         <Posts/>
     </div>
 </template>
@@ -15,11 +15,6 @@
     components: {
       Posts,
       PostWriter
-    },
-    methods: {
-      log(id) {
-        console.log(id);
-      }
     }
   }
 </script>
